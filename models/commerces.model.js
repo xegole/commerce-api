@@ -7,6 +7,7 @@ const CommerceSchema = new Schema({
   name: { type: String, required: true },
   phone: { type: Number, required: false },
   commerceImage: { type: String, required: true },
+  idCity: { type: Number, required: true },
 }, { versionKey: false, collection: 'Commerce' });
 
 /* eslint no-underscore-dangle: 0 */
@@ -28,8 +29,13 @@ CommerceModel.addCommerce = (commerceToAdd) => {
   return commerceToAdd.save();
 };
 
+CommerceModel.updateCommerce = (id, commerce) => {
+  return CommerceModel.findOneAndUpdate({ idCommerce: id }, commerce, { upsert: true, new: true });
+};
+
 CommerceModel.removeCommerce = (id) => {
   return CommerceModel.remove({ idCommerce: id });
 };
+
 
 export default CommerceModel;

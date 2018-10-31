@@ -9,7 +9,7 @@ controller.getAll = async (req, res) => {
   try {
     const commerces = await Commerce.getAll();
     logger.info('sending all commerces...');
-    response.message = 'SUCCESS';
+    response.message = 'success';
     response.result = commerces;
     res.json(response);
   } catch (err) {
@@ -53,17 +53,18 @@ controller.addCommerce = async (req, res) => {
   });
 };
 
-const updoadImage = async(req, res) => {
+const updoadImage = async (req, res) => {
   const commerceToAdd = new Commerce({
     name: req.body.name,
     idCommerce: req.body.idCommerce,
     phone: req.body.phone,
+    idCity: req.body.idCity,
     commerceImage: req.file.path,
   });
   try {
     const savedCommerce = await Commerce.addCommerce(commerceToAdd);
     logger.info('Adding commerce...');
-    response.message = 'SUCCESS';
+    response.message = 'success';
     response.result = savedCommerce;
     res.json(response);
   } catch (err) {
@@ -72,12 +73,24 @@ const updoadImage = async(req, res) => {
   }
 };
 
+controller.updateCommerce = async (req, res) => {
+  const idCommerce = req.body.idCommerce;
+  try {
+    const updateCommerce = await Commerce.updateCommerce(idCommerce, req.body);
+    response.message = 'success';
+    response.result = updateCommerce;
+    res.json(response);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 controller.deleteCommerce = async (req, res) => {
   const idCommerce = req.body.idCommerce;
   try {
     const removedCommerce = await Commerce.removeCommerce(idCommerce);
     logger.info(`Deleted Commerce- ${removedCommerce}`);
-    response.message = 'SUCCESS';
+    response.message = 'success';
     response.result = 'Commerce successfully deleted';
     res.json(response);
   } catch (err) {

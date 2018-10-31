@@ -5,6 +5,7 @@ import cors from 'cors';
 import logger from './core/logger/app-logger';
 import cars from './routes/cars.route';
 import commerces from './routes/commerces.route';
+import cities from './routes/cities.route';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(morgan('dev', { stream: logger.stream }));
 
 app.use('/cars', cars);
 app.use('/commerces', commerces);
+app.use('/cities', cities);
 app.use('/uploads', express.static('uploads'));
 
 app.get('/', (req, res) => {
