@@ -13,7 +13,7 @@ Starter project for creating a MVC express server, using
 Clone the repository and run `npm install`
 
 ```
-git clone https://url-repo.git
+git clone https://github.com/xegole/commerce-api.git
 npm install
 ```
 
