@@ -3,17 +3,17 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const CitySchema = new Schema({
-  idCity: { type: Number, unique: true, required: true },
   name: { type: String, required: true },
   latitude: { type: String, required: true },
   longitude: { type: String, required: true },
-}, { versionKey: false });
+}, { versionKey: false, collection: 'City' });
 
 /* eslint no-underscore-dangle: 0 */
 CitySchema.set('toJSON', {
   virtuals: false,
   transform: (doc, ret) => {
     const city = ret;
+    city.cityId = city._id;
     delete city._id;
   },
 });

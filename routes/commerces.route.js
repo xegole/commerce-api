@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import commercesController from '../controllers/commerces.controller';
 
-
 const router = new Router();
 
 router.get('/allcommerces', (req, res) => {

@@ -49,18 +49,14 @@ controller.addCommerce = async (req, res) => {
     if (err) {
       res.json(err);
     }
-    updoadImage(req, res);
+    uploadImage(req, res);
   });
 };
 
-const updoadImage = async (req, res) => {
-  const commerceToAdd = new Commerce({
-    name: req.body.name,
-    idCommerce: req.body.idCommerce,
-    phone: req.body.phone,
-    idCity: req.body.idCity,
-    commerceImage: req.file.path,
-  });
+const uploadImage = async (req, res) => {
+  logger.info(`Adding Commerce ${req.file.path}`);
+  const commerceToAdd = new Commerce(req.body);
+  commerceToAdd.commerceImage = req.file.path;
   try {
     const savedCommerce = await Commerce.addCommerce(commerceToAdd);
     logger.info('Adding commerce...');
