@@ -8,6 +8,7 @@ const CommerceSchema = new Schema({
   commerceImage: { type: String, required: true },
   cityId: { type: String, required: true },
   categoryId: { type: String, required: true },
+  address: String,
 }, { versionKey: false, collection: 'Commerce' });
 
 /* eslint no-underscore-dangle: 0 */
@@ -31,11 +32,11 @@ CommerceModel.addCommerce = (commerceToAdd) => {
 };
 
 CommerceModel.updateCommerce = (id, commerce) => {
-  return CommerceModel.findOneAndUpdate({ idCommerce: id }, commerce, { upsert: true, new: true });
+  return CommerceModel.findByIdAndUpdate(id, commerce);
 };
 
 CommerceModel.removeCommerce = (id) => {
-  return CommerceModel.remove({ idCommerce: id });
+  return CommerceModel.remove({ _id: id });
 };
 
 export default CommerceModel;

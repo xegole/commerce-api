@@ -54,7 +54,6 @@ controller.addCommerce = async (req, res) => {
 };
 
 const uploadImage = async (req, res) => {
-  logger.info(`Adding Commerce ${req.file.path}`);
   const commerceToAdd = new Commerce(req.body);
   commerceToAdd.commerceImage = req.file.path;
   try {
@@ -70,9 +69,9 @@ const uploadImage = async (req, res) => {
 };
 
 controller.updateCommerce = async (req, res) => {
-  const idCommerce = req.body.idCommerce;
+  const commerceId = req.body.commerceId;
   try {
-    const updateCommerce = await Commerce.updateCommerce(idCommerce, req.body);
+    const updateCommerce = await Commerce.updateCommerce(commerceId, req.body);
     response.message = 'success';
     response.result = updateCommerce;
     res.json(response);
