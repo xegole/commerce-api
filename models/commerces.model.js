@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const CommerceSchema = new Schema({
-  idCommerce: { type: Number, unique: true, required: true, dropDups: true },
   name: { type: String, required: true },
-  phone: { type: Number, required: false },
+  phone: Number,
   commerceImage: { type: String, required: true },
+  cityId: { type: String, required: true },
+  categoryId: { type: String, required: true },
+  address: String,
 }, { versionKey: false, collection: 'Commerce' });
 
 /* eslint no-underscore-dangle: 0 */
@@ -14,6 +16,7 @@ CommerceSchema.set('toJSON', {
   virtuals: false,
   transform: (doc, ret) => {
     const commerce = ret;
+    commerce.commerceId = commerce._id;
     delete commerce._id;
   },
 });
@@ -28,8 +31,12 @@ CommerceModel.addCommerce = (commerceToAdd) => {
   return commerceToAdd.save();
 };
 
+CommerceModel.updateCommerce = (id, commerce) => {
+  return CommerceModel.findByIdAndUpdate(id, commerce);
+};
+
 CommerceModel.removeCommerce = (id) => {
-  return CommerceModel.remove({ idCommerce: id });
+  return CommerceModel.remove({ _id: id });
 };
 
 export default CommerceModel;

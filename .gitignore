@@ -34,5 +34,11 @@ node_modules
 # Optional npm cache directory
 .npm
 
+# Images directory
+uploads
+
+# Config Folder VS code
+.vscode
+
 # Optional REPL history
 .node_repl_history
