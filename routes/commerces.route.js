@@ -7,6 +7,10 @@ router.get('/allcommerces', (req, res) => {
   commercesController.getAll(req, res);
 });
 
+router.get('/bycategory', (req, res) => {
+  commercesController.getCommercesByCategoryId(req, res);
+})
+
 router.post('/addcommerce', (req, res) => {
   commercesController.addCommerce(req, res);
 });

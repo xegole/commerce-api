@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+
 const Schema = mongoose.Schema;
 
 const CategorySchema = new Schema({
@@ -19,6 +20,7 @@ CategorySchema.set('toJson', {
 
 const CategoryModel = mongoose.model('Category', CategorySchema);
 
+
 CategoryModel.getAll = () => {
   return CategoryModel.find({});
 };
@@ -30,6 +32,7 @@ CategoryModel.addCategory = (categoryToAdd) => {
 CategoryModel.deleteCategory = (id) => {
   return CategoryModel.remove(id);
 };
+
 
 export default CategoryModel;
 
