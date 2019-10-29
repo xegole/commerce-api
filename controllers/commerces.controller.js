@@ -94,4 +94,19 @@ controller.deleteCommerce = async (req, res) => {
   }
 };
 
+
+controller.getCommercesByCategoryId = async (req, res) => {
+  const idCategory = req.query.categoryId;
+  console.log('entre', idCategory);
+  try {
+    const commercesByCategoryId = await Commerce.getAllByCategoryId(idCategory);
+    logger.info(`Commerce categoryId- ${commercesByCategoryId}`);
+    response.message = 'success';
+    response.result = commercesByCategoryId;
+    res.json(response);
+  }catch (err) {
+    logger.error(`Failed to get commerce by categoryId- ${err}`)
+  }
+}
+
 export default controller;

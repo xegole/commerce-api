@@ -6,6 +6,7 @@ import logger from './core/logger/app-logger';
 import commerces from './routes/commerces.route';
 import cities from './routes/cities.route';
 import banners from './routes/banner.route';
+import categories from './routes/category.route';
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(morgan('dev', { stream: logger.stream }));
 app.use('/commerces', commerces);
 app.use('/cities', cities);
 app.use('/banners', banners);
+app.use('/categories', categories);
 app.use('/uploads', express.static('uploads'));
 
 app.get('*', (req, res) => {
